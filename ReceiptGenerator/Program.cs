@@ -1,10 +1,13 @@
-﻿namespace ReceiptGenerator
+﻿using ReceiptGenerator.Actions;
+
+namespace ReceiptGenerator
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var receiptBuilder = new ReceiptBuilder();
+            var actions = new List<IAction>() { new Print(), new SendEmail(), new SendSms() };
+            var receiptBuilder = new ReceiptBuilder(actions);
 
             receiptBuilder
                 .WithCorpotateName("Extra")
