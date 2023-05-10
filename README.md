@@ -1,4 +1,4 @@
-# receipt-generator
+# Gerador de recibos
 Projeto em C# que gera recibos, utilizando os Design Patterns "Builder", "Fluent Interface" e "Observer".
 
 Neste exemplo, precisamos gerar um objeto de recibo e simplesmente exibir na tela. Este objeto é relativamente grande e complexo para ser criado, pelo número de campos, por algumas lógicas que estão presentes dentro do recibo, como calculo de valor total e impostos e a lista de itens dentro dele.
