@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ReceiptGenerator
 {
@@ -17,12 +13,12 @@ namespace ReceiptGenerator
         public IList<Item> Itens { get; private set; }
 
         public Receipt(
-            string corporateName, 
-            string cnpj, 
-            DateTime issueDate, 
-            double totalValue, 
-            double taxesValue, 
-            string observations, 
+            string corporateName,
+            string cnpj,
+            DateTime issueDate,
+            double totalValue,
+            double taxesValue,
+            string observations,
             IList<Item> itens)
         {
             CorporateName = corporateName;
@@ -46,7 +42,7 @@ namespace ReceiptGenerator
                 .Append($"TaxesValue: {TaxesValue}\n")
                 .Append($"Observations: {Observations}\n");
 
-            foreach(var item in Itens)
+            foreach (var item in Itens)
             {
                 stringBuilder.Append($"Item -> {item}\n");
             }

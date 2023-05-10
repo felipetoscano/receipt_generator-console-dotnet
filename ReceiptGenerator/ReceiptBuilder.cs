@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ReceiptGenerator.Actions;
 
 namespace ReceiptGenerator
 {
@@ -15,19 +11,28 @@ namespace ReceiptGenerator
         private double taxesValue;
         private string observations;
         private readonly IList<Item> itens;
+        private IList<IAction> actions;
 
-        public ReceiptBuilder()
+        public ReceiptBuilder(IList<IAction> actions)
         {
             corporateName = "";
             cnpj = "";
             observations = "";
             issueDate = DateTime.Now;
             itens = new List<Item>();
+            this.actions = actions;
         }
 
         public Receipt Build()
         {
-            return new Receipt(corporateName, cnpj, issueDate, totalValue, taxesValue, observations, itens);
+            var receipt = new Receipt(corporateName, cnpj, issueDate, totalValue, taxesValue, observations, itens);
+
+            foreach (var action in actions)
+            {
+                action.Execute(receipt);
+            }
+
+            return receipt;
         }
 
         public ReceiptBuilder WithCorpotateName(string corporateName)
